@@ -1,12 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PuzzleManager : MonoBehaviour
 {
     public TextMeshProUGUI usernameText, passwordText;
     public TMP_InputField usernameIF, passwordIF;
-    public GameObject loginGO, puzzlePageGO;
-
+    public GameObject loginGO, puzzlePageGO, thankYouScreen;
+    public int thankyouscreendelay = 10;
+    public List<piecesScript> pieces;
+    public GameObject puzzle;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +33,7 @@ public class PuzzleManager : MonoBehaviour
             Debug.Log("Login Successful");
             loginGO.SetActive(false);
             puzzlePageGO.SetActive(true);
+            puzzle.SetActive(true);
         }
         else
         {
@@ -45,5 +51,21 @@ public class PuzzleManager : MonoBehaviour
             }
             Debug.Log("Login Failed");
         }
+    }
+
+    public void CheckAllPieces()
+    {
+        Debug.Log("Checking");
+        if (pieces.All(w => w.InRightPosition))
+        {
+            thankYouScreen.SetActive(true);
+            StartCoroutine(RestartScene());
+        }
+    }
+
+    IEnumerator RestartScene()
+    {
+        yield return new WaitForSeconds(thankyouscreendelay);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
