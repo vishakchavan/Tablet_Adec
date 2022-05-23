@@ -28,7 +28,7 @@ public class PuzzleManager : MonoBehaviour
 
     public void Submit()
     {
-        if (usernameIF.text == "CASE_1977_MYSTERY |" && passwordIF.text == "917906")
+        if (usernameIF.text == "CASE_1977_MYSTERY" && passwordIF.text == "917906")
         {
             Debug.Log("Login Successful");
             loginGO.SetActive(false);
