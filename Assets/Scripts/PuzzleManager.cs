@@ -28,7 +28,7 @@ public class PuzzleManager : MonoBehaviour
 
     public void Submit()
     {
-        if (usernameIF.text == "CASE_1977_MYSTERY |" && passwordIF.text == "917906")
+        if (usernameIF.text.ToUpper() == "CASE_1977_MYSTERY" && passwordIF.text == "917906")
         {
             Debug.Log("Login Successful");
             loginGO.SetActive(false);
@@ -39,7 +39,7 @@ public class PuzzleManager : MonoBehaviour
         {
             loginGO.SetActive(false);
             loginGO.SetActive(true);
-            if (usernameIF.text == "CASE_1977_MYSTERY |")
+            if (usernameIF.text.ToUpper() == "CASE_1977_MYSTERY")
             {
                 Debug.Log("Incorrect Password");
                 passwordText.color = Color.red;
